@@ -1,215 +1,152 @@
-# 📦 Inventory Management System
+# StockFlow
 
-A full-stack Inventory Management System built with **TypeScript**. It provides a React frontend and a TypeScript/Node.js backend for managing products through REST APIs.
+**GitHub Repository:** https://github.com/suswin12/StockFlow
 
-> 🚧 **This project is currently under active development.**
->
-> The current version uses JSON for data persistence. Database integration, authentication, user roles, and additional backend features are planned for future versions.
+StockFlow is a full-stack inventory management system for managing products, stock levels, pricing, brands, and basic device specifications.
 
----
+The project has a React + TypeScript frontend and an Express + TypeScript backend. The frontend provides the main inventory workspace, while the backend persists inventory data in JSON files.
 
-## 🚀 Live Demo
+## Features
 
-**[Open the live application](https://inventory-managent-system-project.vercel.app/)**
+- View inventory in a modern dashboard
+- Add new products
+- Edit product information
+- Delete products
+- Search products
+- Filter by:
+  - Brand
+  - In-stock items
+  - Low-stock items
+  - Out-of-stock items
+- Sort by:
+  - Name
+  - Price ascending
+  - Price descending
+  - Stock quantity
+- Switch between table and grid views
+- Increase/decrease stock directly from the inventory table
+- Dashboard statistics for inventory
+- Toast notifications for successful and failed operations
+- Responsive UI built with Tailwind CSS
+- Smooth UI transitions using GSAP
+- Express REST API with CORS support
+- JSON-based inventory persistence
 
-## 💻 GitHub
-
-**[View the source code](https://github.com/YuvarajPG/Inventory-Managent-System)**
-
----
-
-## ✨ Features
-
-### Inventory
-
-- ✅ Add products
-- ✅ Edit products
-- ✅ Delete products
-- ✅ Search products
-- ✅ Update stock levels
-- ✅ Sort and filter inventory
-- ✅ View inventory statistics
-- ✅ Track removed products
-
-### Backend
-
-- ✅ RESTful API
-- ✅ Product CRUD operations
-- ✅ Search API
-- ✅ Input validation
-- ✅ JSON-based persistent storage
-- ✅ TypeScript
+## Tech Stack
 
 ### Frontend
 
-- ✅ React + TypeScript
-- ✅ Responsive inventory interface
-- ✅ Product table
-- ✅ Add/Edit product modal
-- ✅ Delete confirmation
-- ✅ Search
-- ✅ Sorting and filtering
-- ✅ Stock management
-
----
-
-## 🛠 Tech Stack
-
-### Frontend
-
-- React
+- React 19
 - TypeScript
-- Tailwind CSS
 - Vite
+- Tailwind CSS
+- GSAP / `@gsap/react`
+- Oxlint
 
 ### Backend
 
 - Node.js
-- Express
+- Express 5
 - TypeScript
-- fs/promises
+- CORS
+- `tsx`
+- JSON files for persistence
 
-### Data Storage
+## Project Structure
 
-- JSON (`inventory.json`)
-- JSON (`removed.json`)
-
----
-
-## 📁 Project Structure
-
-```
-Inventory-Managent-System/
+```text
+StockFlow/
+├── backend/
+│   ├── src/
+│   │   ├── app.ts
+│   │   ├── data.ts
+│   │   ├── extra.ts
+│   │   ├── IMS.ts
+│   │   ├── interactions.ts
+│   │   ├── inventory.json
+│   │   └── removed.json
+│   ├── utils/
+│   │   └── vaildation.ts
+│   ├── package.json
+│   └── tsconfig.json
 │
 ├── frontend/
 │   ├── src/
+│   │   ├── components/
+│   │   ├── versions/
+│   │   │   ├── v1_old/
+│   │   │   ├── Version2GoodUI/
+│   │   │   └── Version3Modern/
+│   │   ├── types/
+│   │   ├── data/
+│   │   ├── App.tsx
+│   │   └── main.tsx
+│   ├── api/
+│   │   └── api.ts
 │   ├── public/
-│   └── package.json
-│
-├── backend/
-│   ├── src/
-│   ├── inventory.json
-│   ├── removed.json
-│   └── package.json
+│   ├── package.json
+│   └── vite.config.ts
 │
 └── README.md
 ```
 
----
+## Requirements
 
-## 📸 Screenshots
+Install the following before running the project:
 
-![Inventory Dashboard](https://github.com/YuvarajPG/Inventory-Managent-System/blob/main/preview.jpeg)
+- Node.js 18+ recommended
+- npm
 
----
+You can use another supported Node.js version, but the project dependencies should be checked if you encounter compatibility problems.
 
-## 🚀 Getting Started
+## Running Locally
 
-### Clone the repository
+The frontend and backend are separate applications, so run them in two terminals.
 
-```bash
-git clone https://github.com/YuvarajPG/Inventory-Managent-System.git
-cd Inventory-Managent-System
-```
-
-### Backend
+### 1. Start the backend
 
 ```bash
 cd backend
-pnpm install
-pnpm dev
+npm install
+npm run dev
 ```
 
-### Frontend
+The backend runs on:
 
-Open another terminal:
-
-```bash
-cd frontend
-pnpm install
-pnpm dev
+```text
+http://localhost:3000
 ```
 
-Then open:
+Available API endpoints:
 
-```
-http://localhost:5173
-```
-
----
-
-## 📦 Product Model
-
-```ts
-interface Product {
-  id: string;
-  name: string;
-  brand: string;
-  price: number;
-  stock: number;
-  details: {
-    ram: string;
-    rom: string;
-  };
-  timestamp: string;
-}
+```text
+GET    /products
+GET    /products?search=<query>
+POST   /products
+PUT    /products/:id
+DELETE /products/:id
 ```
 
----
 
-## 🗺️ Roadmap
+## Stock Status
 
-### Completed
+The current UI treats stock quantities as:
 
-- [x] CLI inventory system
-- [x] CRUD operations
-- [x] JSON data persistence
-- [x] Input validation
-- [x] React frontend
-- [x] Product management UI
-- [x] REST API integration
-- [x] Search
-- [x] Stock management
-- [x] Sorting and filtering
-- [x] Responsive UI
+| Stock | Status |
+|---:|---|
+| `0` | Out of stock |
+| `1–5` | Low stock |
+| `6+` | In stock |
 
-### Planned
+Stock can be adjusted directly from the product table using the `+` and `-` controls.
 
-- [ ] Database integration
-- [ ] Authentication
-- [ ] User roles and permissions
-- [ ] Inventory history
-- [ ] Pagination
-- [ ] Unit testing
-- [ ] Docker support
-- [ ] Additional dashboard features
 
----
+## Author
 
-## 📌 Current Status
+**Suswin Prasath**
 
-| Module | Status |
-| --- | --- |
-| Frontend | ✅ Working |
-| Backend | ✅ Working |
-| REST API | ✅ Working |
-| CRUD | ✅ Working |
-| Search | ✅ Working |
-| Stock Management | ✅ Working |
-| Data Storage | JSON |
-| Database | 🚧 Planned |
-| Authentication | 🚧 Planned |
+GitHub: https://github.com/suswin12/StockFlow
 
----
+## License
 
-## 👤 Author
-
-**Yuvaraj P.G**
-
-- GitHub: https://github.com/YuvarajPG
-
----
-
-## 📄 License
-
-This project is created for learning and development purposes.
+No license has been specified for this repository yet.
