@@ -127,6 +127,20 @@ PUT    /products/:id
 DELETE /products/:id
 ```
 
+2. Start the frontend
+
+Open a second terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Vite will print the local frontend URL in the terminal, normally:
+
+```text
+http://localhost:5173
 
 ## Stock Status
 
